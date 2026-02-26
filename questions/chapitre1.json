@@ -1,30 +1,247 @@
 {
-  "titre": "Chapitre 1 - Fondamentaux de l'ISA/IEC 62443",
-  "description": "Introduction aux concepts clés de la norme ISA/IEC 62443 pour la cybersécurité des systèmes de contrôle industriels (ICS/SCADA).",
+  "id": "chapitre1",
+  "title": "Chapter 1 - ISA/IEC 62443 Fundamentals",
+  "description": "Core concepts of industrial cybersecurity and the ISA/IEC 62443 standard",
   "questions": [
     {
       "id": 1,
-      "enonce": "Quelle est la principale finalité de la norme ISA/IEC 62443 ?",
-      "options": [
-        "A. Définir des exigences de sécurité physique pour les sites industriels",
-        "B. Fournir un cadre de cybersécurité pour les systèmes d'automatisation et de contrôle industriels (IACS)",
-        "C. Normaliser les protocoles de communication entre automates programmables (PLC)",
-        "D. Certifier les ingénieurs en cybersécurité industrielle"
+      "question": "A three-tier network segmentation design that prevents direct communication between the enterprise network and the process control network by creating a buffer is also known as a(n)",
+      "answers": [
+        "Zones and Conduits",
+        "DMZ",
+        "Perimeter Firewall",
+        "ICS Firewall"
       ],
-      "bonne_reponse": "B",
-      "explication": "L'ISA/IEC 62443 est une série de normes qui définit les exigences et les bonnes pratiques pour sécuriser les systèmes d'automatisation et de contrôle industriels (IACS). Elle couvre l'ensemble du cycle de vie de ces systèmes, de la conception à l'exploitation, pour les opérateurs, les intégrateurs et les fournisseurs."
+      "correct": 1,
+      "explanation": "A DMZ (Demilitarized Zone) is a three-tier network segmentation design that acts as a buffer between the enterprise network and the process control network, preventing direct communication between them."
     },
     {
       "id": 2,
-      "enonce": "Que désigne le concept de 'Security Level' (SL) dans l'IEC 62443 ?",
-      "options": [
-        "A. Le niveau de classification des données échangées entre composants industriels",
-        "B. La mesure de performance d'un système de contrôle en termes de disponibilité",
-        "C. Le degré de protection requis ou atteint par un système contre des menaces intentionnelles",
-        "D. Le niveau d'accréditation d'un auditeur en sécurité industrielle"
+      "question": "What are the main types of intrusion detection systems?",
+      "answers": [
+        "Host intrusion detection & intrusion prevention systems",
+        "Perimeter intrusion detection & network intrusion detection",
+        "Intrusion prevention & network intrusion detection",
+        "Host intrusion detection & network intrusion detection"
       ],
-      "bonne_reponse": "C",
-      "explication": "Les Security Levels (SL 1 à SL 4) définissent le niveau de résistance d'un système face à des attaques intentionnelles de plus en plus sophistiquées. SL 1 protège contre des attaques non intentionnelles, tandis que SL 4 est conçu pour résister à des attaquants étatiques disposant de ressources importantes. On distingue le SL cible (SL-T), le SL atteint (SL-A) et le SL de capacité (SL-C)."
+      "correct": 3,
+      "explanation": "The two main types of intrusion detection systems are Host-based IDS (HIDS), which monitors activity on individual hosts, and Network-based IDS (NIDS), which monitors network traffic."
+    },
+    {
+      "id": 3,
+      "question": "What is the desired outcome of the 'initiate a CSMS program' activity?",
+      "answers": [
+        "Conduct periodic IACS conformance audits",
+        "Conceptual diagrams that show how an AD forest can be attacked",
+        "Obtain leadership commitment, support and funding",
+        "Identify software agents used by threat agents to propagate attacks"
+      ],
+      "correct": 2,
+      "explanation": "The 'initiate a CSMS program' activity aims to obtain leadership commitment, support and funding, which is essential for establishing a successful Cybersecurity Management System."
+    },
+    {
+      "id": 4,
+      "question": "A network that uses a public telecommunication infrastructure, such as the Internet, to provide remote networks or computers with secure access to another network is known as a",
+      "answers": [
+        "VLAN",
+        "VPN",
+        "VSAT",
+        "VNC"
+      ],
+      "correct": 1,
+      "explanation": "A VPN (Virtual Private Network) uses public telecommunication infrastructure like the Internet to provide secure remote access to private networks."
+    },
+    {
+      "id": 5,
+      "question": "Security service system that monitors and analyzes system events for the purpose of finding, and providing a real-time or near real-time warning of attempts to access system resources in an unauthorized manner is called a(n)",
+      "answers": [
+        "IDS",
+        "Firewall",
+        "Router",
+        "Anti-virus software"
+      ],
+      "correct": 0,
+      "explanation": "An IDS (Intrusion Detection System) monitors and analyzes system events to detect and alert on unauthorized access attempts in real-time or near real-time."
+    },
+    {
+      "id": 6,
+      "question": "Which of the following is the correct risk equation?",
+      "answers": [
+        "Risk = Threat x Asset x Consequence",
+        "Risk = Threat x Vulnerability x Cost",
+        "Risk = Threat x Vulnerability x Consequence",
+        "Risk = Threat agent x Threat x Vulnerability"
+      ],
+      "correct": 2,
+      "explanation": "According to ISA/IEC 62443, the correct risk equation is Risk = Threat x Vulnerability x Consequence, which captures the three key factors that determine the level of risk."
+    },
+    {
+      "id": 7,
+      "question": "The desired level of security for a system is known as the ________?",
+      "answers": [
+        "Target security level",
+        "Achieved security level",
+        "Capability security level",
+        "Protection level"
+      ],
+      "correct": 0,
+      "explanation": "The Target Security Level (SL-T) represents the desired level of security for a system or zone, as defined in ISA/IEC 62443."
+    },
+    {
+      "id": 8,
+      "question": "What is the PRIMARY responsibility of the transport layer of the Open Systems Interconnection (OSI) model?",
+      "answers": [
+        "Handles the routing of data packets between networks",
+        "Ensures reliable data transfer, including error detection and flow control",
+        "Manages the rules for framing and converting electrical signals to data",
+        "Defines the physical connection between devices"
+      ],
+      "correct": 1,
+      "explanation": "The transport layer (Layer 4) of the OSI model is primarily responsible for ensuring reliable end-to-end data transfer, including error detection, flow control, and segmentation."
+    },
+    {
+      "id": 9,
+      "question": "Which activities are included in the ISA/IEC 62443 implement phase?",
+      "answers": [
+        "Development of the Cybersecurity Management System (CSMS) and risk assessment",
+        "Development of zones and conduits and detailed cyber risk assessment",
+        "Implementation of cybersecurity countermeasures and system acceptance testing",
+        "Implementation of cybersecurity policies and ongoing monitoring of cybersecurity performance"
+      ],
+      "correct": 2,
+      "explanation": "The implement phase of ISA/IEC 62443 includes the actual implementation of cybersecurity countermeasures and system acceptance testing to verify they meet security requirements."
+    },
+    {
+      "id": 10,
+      "question": "Which layer of the OSI model defines the rules for handling the Modbus Application Protocol (MBAP)?",
+      "answers": [
+        "Network layer",
+        "Application layer",
+        "Transport layer",
+        "Presentation layer"
+      ],
+      "correct": 1,
+      "explanation": "The Modbus Application Protocol (MBAP) operates at the Application layer (Layer 7) of the OSI model, where it defines the rules for communication between Modbus devices."
+    },
+    {
+      "id": 11,
+      "question": "One of the most significant trends in industrial control system (ICS) cybersecurity is the increased use of commercial off-the-shelf (COTS) technologies and IP-based communication protocols. What is the primary risk introduced by this trend?",
+      "answers": [
+        "Enhanced performance of industrial systems due to better hardware and software",
+        "Higher levels of system isolation because of improved proprietary solutions",
+        "Increased exposure to vulnerabilities and cyber threats common in IT environments",
+        "Simplified integration of systems with no cybersecurity impact"
+      ],
+      "correct": 2,
+      "explanation": "The use of COTS technologies and IP-based protocols in ICS exposes industrial systems to the same vulnerabilities and cyber threats found in traditional IT environments, significantly increasing the attack surface."
+    },
+    {
+      "id": 12,
+      "question": "In the context of industrial protocols like EtherNet/IP, what is the primary role of the Common Industrial Protocol (CIP)?",
+      "answers": [
+        "To define physical connectivity standards for Ethernet devices",
+        "To provide a universal protocol for automation control and information",
+        "To offer a replacement for legacy serial protocols like RS-485",
+        "To secure communication between devices using advanced encryption techniques"
+      ],
+      "correct": 1,
+      "explanation": "CIP (Common Industrial Protocol) provides a universal, open protocol for automation control and information exchange, enabling interoperability between industrial devices from different manufacturers."
+    },
+    {
+      "id": 13,
+      "question": "'Defense-in-depth' is a core concept in ISA/IEC 62443. Which of the following is the most accurate example of implementing defense-in-depth in an IACS environment?",
+      "answers": [
+        "Installing a single robust firewall to protect the entire network",
+        "Using multiple security layers, including firewalls, intrusion detection systems (IDS), and physical access controls",
+        "Segregating IT and OT networks and managing them independently",
+        "Relying solely on secure industrial protocols like OPC UA"
+      ],
+      "correct": 1,
+      "explanation": "Defense-in-depth involves using multiple layers of security controls (firewalls, IDS, physical controls, etc.) so that if one layer fails, others still provide protection."
+    },
+    {
+      "id": 14,
+      "question": "When performing a security risk assessment as per ISA/IEC 62443, which of the following factors is least relevant in determining the security requirements for a system?",
+      "answers": [
+        "The likelihood of an attack exploiting a vulnerability",
+        "The safety impact of a cyber incident on personnel and equipment",
+        "The cost of cybersecurity technologies being implemented",
+        "The operational criticality of the system being assessed"
+      ],
+      "correct": 2,
+      "explanation": "While cost is a practical consideration, it is the least relevant factor in determining security requirements. The focus should be on threat likelihood, safety impact, and operational criticality."
+    },
+    {
+      "id": 15,
+      "question": "ISA/IEC 62443 emphasizes the concept of zones and conduits for securing IACS. Which of the following best describes a conduit?",
+      "answers": [
+        "A physical communication cable connecting two zones",
+        "A logical grouping of devices that share similar security requirements",
+        "A secured communication path between zones with different security levels",
+        "A layer of encryption applied to secure IACS data"
+      ],
+      "correct": 2,
+      "explanation": "A conduit in ISA/IEC 62443 is a secured communication path that enables data flow between zones with different security levels, while maintaining the integrity of each zone's security."
+    },
+    {
+      "id": 16,
+      "question": "Which of the following is a potential drawback of using intrusion detection systems (IDS) in an industrial environment?",
+      "answers": [
+        "IDS systems are unable to detect unauthorized access attempts",
+        "IDS systems require frequent updates, making them impractical for IACS",
+        "IDS systems are only effective against known vulnerabilities and may not detect zero-day attacks",
+        "IDS systems cause significant latency in real-time industrial operations"
+      ],
+      "correct": 2,
+      "explanation": "A key limitation of IDS systems is that they primarily detect known threats based on signatures. Zero-day attacks, which exploit unknown vulnerabilities, may bypass traditional IDS detection."
+    },
+    {
+      "id": 17,
+      "question": "Why is patch management in IACS environments more complex compared to IT environments?",
+      "answers": [
+        "Patches in IACS require real-time encryption during installation",
+        "Testing and validation are essential due to the potential impact on operations and safety",
+        "Vendors typically do not release patches for industrial software",
+        "IACS systems are air-gapped, making patching unnecessary"
+      ],
+      "correct": 1,
+      "explanation": "In IACS environments, patches must be extensively tested and validated before deployment because incorrect patches could disrupt critical operations or create safety hazards."
+    },
+    {
+      "id": 18,
+      "question": "What is a security level (SL) in ISA/IEC 62443?",
+      "answers": [
+        "The probability of an attack occurring",
+        "A numerical indicator of the robustness of security controls",
+        "The number of users authorized to access the system",
+        "A classification of the physical safety of IACS devices"
+      ],
+      "correct": 1,
+      "explanation": "A Security Level (SL) in ISA/IEC 62443 is a numerical indicator (1-4) that describes the robustness of security controls, ranging from basic protection (SL1) to protection against state-sponsored attacks (SL4)."
+    },
+    {
+      "id": 19,
+      "question": "What is the primary purpose of using a risk matrix in an IACS security assessment?",
+      "answers": [
+        "To assign specific roles and responsibilities to stakeholders",
+        "To quantify financial losses due to cyber incidents",
+        "To map the likelihood of threats against their potential consequences",
+        "To calculate the exact cost of implementing security controls"
+      ],
+      "correct": 2,
+      "explanation": "A risk matrix is used to visually map and prioritize risks by plotting the likelihood of threats against their potential consequences, helping organizations focus resources on the most critical risks."
+    },
+    {
+      "id": 20,
+      "question": "What makes Modbus TCP particularly vulnerable in industrial environments?",
+      "answers": [
+        "It encrypts all data, making it hard to troubleshoot",
+        "It lacks authentication and encryption mechanisms",
+        "It operates only on proprietary devices",
+        "It requires complex configurations that are error-prone"
+      ],
+      "correct": 1,
+      "explanation": "Modbus TCP was designed for reliability in isolated networks, not security. It lacks built-in authentication and encryption, making it vulnerable to eavesdropping and man-in-the-middle attacks."
     }
   ]
 }

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QCM IEC 62443</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#f0f4ff',
+              100: '#dce6fd',
+              200: '#b9cdfb',
+              400: '#6089f5',
+              600: '#2d55d4',
+              700: '#1e3ea8',
+              800: '#162d7a',
+              900: '#0f1f55',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- NAVBAR -->
+  <header class="bg-brand-800 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo / Titre -->
+      <a href="#" onclick="showHome()" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 bg-brand-400 rounded-lg flex items-center justify-center font-bold text-white text-sm shadow group-hover:bg-brand-600 transition-colors">
+          IEC
+        </div>
+        <div class="leading-tight">
+          <div class="font-bold text-base sm:text-lg tracking-tight">QCM IEC 62443</div>
+          <div class="text-brand-200 text-xs hidden sm:block">Cybersécurité Industrielle</div>
+        </div>
+      </a>
+
+      <!-- Nav desktop -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#" onclick="showHome()" class="nav-link hover:text-brand-200 transition-colors">Accueil</a>
+        <a href="#" onclick="showChapitres()" class="nav-link hover:text-brand-200 transition-colors">Chapitres</a>
+        <a href="#" id="nav-score-link" class="hidden nav-link hover:text-brand-200 transition-colors" onclick="showScore()">Résultats</a>
+      </nav>
+
+      <!-- Hamburger mobile -->
+      <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-brand-700 transition-colors" onclick="toggleMenu()">
+        <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menu mobile déroulant -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-brand-700 bg-brand-900">
+      <div class="px-4 py-3 flex flex-col gap-2 text-sm font-medium">
+        <a href="#" onclick="showHome(); toggleMenu()" class="py-2 px-3 rounded-lg hover:bg-brand-700 transition-colors">Accueil</a>
+        <a href="#" onclick="showChapitres(); toggleMenu()" class="py-2 px-3 rounded-lg hover:bg-brand-700 transition-colors">Chapitres</a>
+        <a href="#" id="mobile-score-link" class="hidden py-2 px-3 rounded-lg hover:bg-brand-700 transition-colors" onclick="showScore(); toggleMenu()">Résultats</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-8">
+
+    <!-- PAGE : ACCUEIL -->
+    <section id="page-home" class="page">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-brand-100 rounded-2xl mb-4">
+          <svg class="w-10 h-10 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-800 mb-3">QCM ISA/IEC 62443</h1>
+        <p class="text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
+          Testez vos connaissances sur la norme de cybersécurité pour les systèmes de contrôle industriels.
+        </p>
+      </div>
+
+      <!-- Cartes d'info -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+          <div class="text-3xl font-extrabold text-brand-600 mb-1" id="stat-chapitres">—</div>
+          <div class="text-sm text-gray-500">Chapitres disponibles</div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+          <div class="text-3xl font-extrabold text-brand-600 mb-1" id="stat-questions">—</div>
+          <div class="text-sm text-gray-500">Questions au total</div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center">
+          <div class="text-3xl font-extrabold text-green-500 mb-1" id="stat-score">—</div>
+          <div class="text-sm text-gray-500">Meilleur score</div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button onclick="showChapitres()" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-8 rounded-xl shadow transition-all hover:shadow-md active:scale-95">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+          Commencer le QCM
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE : LISTE DES CHAPITRES -->
+    <section id="page-chapitres" class="page hidden">
+      <h2 class="text-2xl font-bold text-brand-800 mb-2">Chapitres</h2>
+      <p class="text-gray-500 mb-6 text-sm">Choisissez un chapitre pour démarrer le questionnaire.</p>
+      <div id="chapitres-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Chapitres injectés par JS -->
+      </div>
+    </section>
+
+    <!-- PAGE : QCM -->
+    <section id="page-qcm" class="page hidden">
+      <!-- En-tête du QCM -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+        <div>
+          <button onclick="showChapitres()" class="text-brand-600 hover:text-brand-800 text-sm font-medium flex items-center gap-1 mb-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Retour aux chapitres
+          </button>
+          <h2 id="qcm-titre" class="text-xl font-bold text-brand-800"></h2>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="text-sm text-gray-500">Question</span>
+          <span id="qcm-progress-text" class="font-bold text-brand-700 text-lg"></span>
+        </div>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+        <div id="qcm-progress-bar" class="bg-brand-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+      </div>
+
+      <!-- Card question -->
+      <div id="question-card" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8 mb-6">
+        <p id="question-enonce" class="text-base sm:text-lg font-semibold text-gray-800 mb-6 leading-relaxed"></p>
+        <div id="options-list" class="flex flex-col gap-3"></div>
+      </div>
+
+      <!-- Explication -->
+      <div id="explication-box" class="hidden bg-blue-50 border border-blue-200 rounded-xl p-4 sm:p-5 mb-6">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-blue-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p id="explication-text" class="text-sm text-blue-800 leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- Bouton suivant -->
+      <div class="flex justify-end">
+        <button id="btn-suivant" class="hidden bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-7 rounded-xl shadow transition-all hover:shadow-md active:scale-95" onclick="questionSuivante()">
+          Suivant
+          <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE : SCORE -->
+    <section id="page-score" class="page hidden text-center">
+      <div class="max-w-md mx-auto">
+        <div id="score-icon" class="inline-flex items-center justify-center w-24 h-24 rounded-full mb-6"></div>
+        <h2 class="text-3xl font-extrabold text-brand-800 mb-2">Résultats</h2>
+        <p id="score-chapitre" class="text-gray-500 text-sm mb-8"></p>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6">
+          <div id="score-value" class="text-6xl font-black text-brand-600 mb-2"></div>
+          <div class="text-gray-500 text-sm mb-6">questions correctes</div>
+          <div id="score-bar-wrap" class="w-full bg-gray-100 rounded-full h-4 overflow-hidden">
+            <div id="score-bar" class="h-4 rounded-full transition-all duration-1000" style="width:0%"></div>
+          </div>
+          <div id="score-percent" class="text-right text-xs text-gray-400 mt-1"></div>
+        </div>
+
+        <p id="score-message" class="text-gray-600 italic mb-8 text-sm"></p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button onclick="recommencer()" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-6 rounded-xl shadow transition-all active:scale-95">
+            Recommencer ce chapitre
+          </button>
+          <button onclick="showChapitres()" class="bg-white hover:bg-gray-50 text-brand-700 font-semibold py-3 px-6 rounded-xl border border-brand-200 shadow-sm transition-all active:scale-95">
+            Autres chapitres
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-400">
+    QCM ISA/IEC 62443 &mdash; Cybersécurité des systèmes industriels
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

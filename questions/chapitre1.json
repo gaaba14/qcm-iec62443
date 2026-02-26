@@ -1,0 +1,30 @@
+{
+  "titre": "Chapitre 1 - Fondamentaux de l'ISA/IEC 62443",
+  "description": "Introduction aux concepts clés de la norme ISA/IEC 62443 pour la cybersécurité des systèmes de contrôle industriels (ICS/SCADA).",
+  "questions": [
+    {
+      "id": 1,
+      "enonce": "Quelle est la principale finalité de la norme ISA/IEC 62443 ?",
+      "options": [
+        "A. Définir des exigences de sécurité physique pour les sites industriels",
+        "B. Fournir un cadre de cybersécurité pour les systèmes d'automatisation et de contrôle industriels (IACS)",
+        "C. Normaliser les protocoles de communication entre automates programmables (PLC)",
+        "D. Certifier les ingénieurs en cybersécurité industrielle"
+      ],
+      "bonne_reponse": "B",
+      "explication": "L'ISA/IEC 62443 est une série de normes qui définit les exigences et les bonnes pratiques pour sécuriser les systèmes d'automatisation et de contrôle industriels (IACS). Elle couvre l'ensemble du cycle de vie de ces systèmes, de la conception à l'exploitation, pour les opérateurs, les intégrateurs et les fournisseurs."
+    },
+    {
+      "id": 2,
+      "enonce": "Que désigne le concept de 'Security Level' (SL) dans l'IEC 62443 ?",
+      "options": [
+        "A. Le niveau de classification des données échangées entre composants industriels",
+        "B. La mesure de performance d'un système de contrôle en termes de disponibilité",
+        "C. Le degré de protection requis ou atteint par un système contre des menaces intentionnelles",
+        "D. Le niveau d'accréditation d'un auditeur en sécurité industrielle"
+      ],
+      "bonne_reponse": "C",
+      "explication": "Les Security Levels (SL 1 à SL 4) définissent le niveau de résistance d'un système face à des attaques intentionnelles de plus en plus sophistiquées. SL 1 protège contre des attaques non intentionnelles, tandis que SL 4 est conçu pour résister à des attaquants étatiques disposant de ressources importantes. On distingue le SL cible (SL-T), le SL atteint (SL-A) et le SL de capacité (SL-C)."
+    }
+  ]
+}

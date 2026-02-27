@@ -28,7 +28,7 @@ async def get_chapitres():
                 data = json.load(f)
             chapitres.append({
                 "id": filename.replace(".json", ""),
-                "titre": data.get("titre", filename),
+                "titre": data.get("title", data.get("titre", filename)),
                 "description": data.get("description", ""),
                 "nb_questions": len(data.get("questions", []))
             })

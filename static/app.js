@@ -75,7 +75,7 @@ async function loadChapitres() {
           </div>
           <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-medium">${ch.nb_questions} questions</span>
         </div>
-        <h3 class="font-bold text-gray-800 text-sm sm:text-base mb-1 leading-snug">${ch.titre}</h3>
+        <h3 class="font-bold text-gray-800 text-sm sm:text-base mb-1 leading-snug">${ch.titre || ch.title}</h3>
         <p class="text-xs text-gray-500 flex-1 mb-4 leading-relaxed">${ch.description}</p>
         <div class="flex items-center justify-between mt-auto">
           ${bestHtml}
@@ -111,7 +111,7 @@ async function startQcm(chapitreId) {
     score = 0;
     answered = false;
 
-    setEl('qcm-titre', data.titre);
+    setEl('qcm-titre', data.title || data.titre);
     showPage('page-qcm');
     afficherQuestion();
 
@@ -142,18 +142,18 @@ function afficherQuestion() {
   setEl('qcm-progress-text', `${questionIndex + 1} / ${questions.length}`);
 
   // Énoncé
-  setEl('question-enonce', q.enonce);
+  setEl('question-enonce', q.question);
 
   // Options
   const list = document.getElementById('options-list');
   list.innerHTML = '';
-  q.options.forEach(opt => {
-    const letter = opt.charAt(0);
-    const text   = opt.slice(3); // "A. texte" → retire "A. "
+  q.answers.forEach((text, idx) => {
+    const letter = String.fromCharCode(65 + idx); // A, B, C, D…
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    btn.innerHTML = `<span class="letter">${letter}</span><span>${opt.slice(3)}</span>`;
-    btn.addEventListener('click', () => choisirReponse(letter, q.bonne_reponse, q.explication));
+    btn.dataset.index = idx;
+    btn.innerHTML = `<span class="letter">${letter}</span><span>${text}</span>`;
+    btn.addEventListener('click', () => choisirReponse(idx, q.correct, q.explanation));
     list.appendChild(btn);
   });
 
@@ -165,19 +165,19 @@ function afficherQuestion() {
 // ─────────────────────────────────────────────
 //  Traitement d'une réponse
 // ─────────────────────────────────────────────
-function choisirReponse(lettre, bonneReponse, explication) {
+function choisirReponse(index, bonneReponse, explication) {
   if (answered) return;
   answered = true;
 
-  if (lettre === bonneReponse) score++;
+  if (index === bonneReponse) score++;
 
   // Colorer les options
   document.querySelectorAll('.option-btn').forEach(btn => {
-    const l = btn.querySelector('.letter').textContent.trim();
+    const i = parseInt(btn.dataset.index, 10);
     btn.disabled = true;
-    if (l === bonneReponse) {
+    if (i === bonneReponse) {
       btn.classList.add('correct');
-    } else if (l === lettre && lettre !== bonneReponse) {
+    } else if (i === index && index !== bonneReponse) {
       btn.classList.add('wrong');
     }
   });
@@ -217,7 +217,7 @@ function afficherScore() {
 
   // Titre du chapitre
   const ch = chapitresData.find(c => c.id === currentChapitre);
-  setEl('score-chapitre', ch ? ch.titre : '');
+  setEl('score-chapitre', ch ? ch.titre || ch.title : '');
   setEl('score-value', `${score} / ${total}`);
   setEl('score-percent', `${pct}%`);
 
